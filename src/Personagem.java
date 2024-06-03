@@ -31,42 +31,27 @@ public abstract class Personagem {
     public void atacar(Personagem b) {
         if (this.estaMorto() ==  true) {
             System.out.printf("O %s não consegue atacar, pois está morto.%n", this.nome);
-            
-            this.printStatus();
-            b.printStatus();
         }
 
         else {
-            System.out.printf("O %s ataca o %s com %s.%n", this.nome, b.nome, this.arma);
+            System.out.printf("O %s ataca o %s com %s.%n", this.nome, b.nome, this.arma.getNome());
 
             if (b.estaMorto() == true) {
-                System.out.printf("Pare! O %s já está morto!%n", b.nome);
-                
-                this.printStatus();
-                b.printStatus();
+                System.out.printf("Pare! O %s já está morto!%n%n", b.nome);            
             } 
 
             else if (this.forca > b.forca && this.destreza > b.destreza) {
                 b.recebeDano(this.calculaDano());
-                System.out.printf("O ataque foi efetivo com %.1f pontos de dano!%n", this.calculaDano());
-                
-                this.printStatus();
-                b.printStatus();
+                System.out.printf("O ataque foi efetivo com %.1f pontos de dano!%n%n", this.calculaDano());          
             }
 
             else if (this.forca < b.forca || this.destreza < b.destreza) {
                 this.recebeDano(b.calculaDano());
-                System.out.printf("O ataque foi inefetivo e revidado com %.1f pontos de dano!%n", b.calculaDano());
-                
-                this.printStatus();
-                b.printStatus();
+                System.out.printf("O ataque foi inefetivo e revidado com %.1f pontos de dano!%n%n", b.calculaDano());     
             }
 
             else if (this.forca == b.forca || this.destreza == b.destreza) {
-                System.out.printf("O ataque foi defendido, ninguem se machucou!%n");
-                
-                this.printStatus();
-                b.printStatus();
+                System.out.printf("O ataque foi defendido, ninguem se machucou!%n%n"); 
             }
 
         }
